@@ -1,0 +1,10 @@
+// Copyright 2015 Huan Du. All rights reserved.
+// Licensed under the MIT license that can be found in the LICENSE file.
+
+package types
+
+// Iterator is a generic interface for all iterator values returned by generator.
+type Iterator interface {
+	generic(...Yield, ...Result)
+	Next(Result) (Yield, bool)
+}

@@ -1,0 +1,66 @@
+// Copyright 2015 Huan Du. All rights reserved.
+// Licensed under the MIT license that can be found in the LICENSE file.
+
+package types
+
+type NewOverrider interface {
+	generic() Receiver
+	OverrideNew() Receiver
+}
+
+type MakeOverrider interface {
+	generic(...Args) Receiver
+	OverrideMake(Args) Receiver
+}
+
+type LenOverrider interface {
+	OverrideLen() int
+}
+
+type DeleteOverrider interface {
+	generic(Index)
+	OverrideDelete(Index)
+}
+
+type CloseOverrider interface {
+	OverrideClose()
+}
+
+type CapOverrider interface {
+	OverrideCap() int
+}
+
+type AppendOverrider interface {
+	generic(Arg) Receiver
+	OverrideAppend(...Arg) Receiver
+}
+
+type IndexOverride interface {
+	generic(Index, Value)
+
+	OverrideGetItem(Index) Value
+	OverrideGetItemOK(Index) (Value, bool)
+	OverrideSetItem(Index, Value)
+}
+
+type RangeOverrider interface {
+	generic(...Args)
+	OverrideRange() (yield func(Args))
+}
+
+type ReceiverOverrider interface {
+	generic(Value)
+	OverrideReceiver() Value
+	OverrideReceiverOK() (Value, bool)
+}
+
+type SendOverrider interface {
+	generic(Value)
+	OverrideSend(Value)
+}
+
+type SliceOverrider interface {
+	generic() Receiver
+	OverrideSlice(low, high int) Receiver
+	OverrideSlice3(low, high, max int) Receiver
+}
